@@ -1,0 +1,14 @@
+
+{% extends "base.html" %}
+{% block content %}
+<div class="story-container" style="max-width: 800px; margin: auto; padding: 2rem; background-color: #fffaf3; border-radius: 14px; box-shadow: 0 4px 20px rgba(0,0,0,0.1);">
+    <h1 style="color: #5e4b8b; font-size: 2rem;">📜 {{ era }}</h1>
+    {% if image_url %}
+        <img src="{{ image_url }}" alt="Image of {{ era }}" style="max-width: 100%; border-radius: 12px; margin: 1.5rem 0; box-shadow: 0 2px 15px rgba(0,0,0,0.1);">
+    {% endif %}
+    <p style="font-size: 1.2rem; line-height: 1.8;">{{ story }}</p>
+    <div class="back-link" style="text-align: center; margin-top: 2rem;">
+        <a href="/explore" style="color: #5e4b8b; text-decoration: none; font-weight: bold;">← Back to Timeline</a>
+    </div>
+</div>
+{% endblock %}

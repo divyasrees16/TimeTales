@@ -1,0 +1,17 @@
+
+{% extends "base.html" %}
+{% block content %}
+<div style="text-align: center; padding: 2rem;">
+    <h2 style="font-size: 2rem; color: #5e4b8b;">🗺️ Step into History with TimeTales</h2>
+    <p>Describe an era or event you want to explore, and let us take you there with storytelling and archaeological facts.</p>
+    <form method="POST" style="margin-top: 2rem;">
+        <input type="text" name="era" placeholder="e.g., Tamil Nadu during the Chola Dynasty" 
+               style="padding: 0.7rem; width: 60%; font-size: 1.1rem; border: 2px solid #ccc; border-radius: 12px;">
+        <br><br>
+        <button type="submit" 
+                style="padding: 0.8rem 2rem; font-size: 1.1rem; background-color: #5e4b8b; color: white; border: none; border-radius: 12px; cursor: pointer;">
+            ✨ Travel
+        </button>
+    </form>
+</div>
+{% endblock %}
