@@ -1,12 +1,25 @@
-
 {% extends "base.html" %}
 {% block content %}
 <div class="story-container" style="max-width: 800px; margin: auto; padding: 2rem; background-color: #fffaf3; border-radius: 14px; box-shadow: 0 4px 20px rgba(0,0,0,0.1);">
     <h1 style="color: #5e4b8b; font-size: 2rem;">📜 {{ era }}</h1>
+    <p style="color: #888; margin-top: -0.5rem;">Language: {{ language }}</p>
+
     {% if image_url %}
         <img src="{{ image_url }}" alt="Image of {{ era }}" style="max-width: 100%; border-radius: 12px; margin: 1.5rem 0; box-shadow: 0 2px 15px rgba(0,0,0,0.1);">
     {% endif %}
-    <p style="font-size: 1.2rem; line-height: 1.8;">{{ story }}</p>
+
+    {% if summary %}
+        <div style="background: #f4edff; padding: 1rem 1.5rem; border-radius: 12px; margin-bottom: 1.5rem;">
+            <h3 style="margin-top: 0; color: #5e4b8b;">📚 Historical background</h3>
+            <p style="margin: 0; line-height: 1.6;">{{ summary }}</p>
+            {% if wiki_url %}
+                <p style="margin: 0.8rem 0 0;"><a href="{{ wiki_url }}" target="_blank" rel="noopener" style="color: #8652ff;">Read more on Wikipedia →</a></p>
+            {% endif %}
+        </div>
+    {% endif %}
+
+    <p style="font-size: 1.2rem; line-height: 1.8; white-space: pre-line;">{{ story }}</p>
+
     <div class="back-link" style="text-align: center; margin-top: 2rem;">
         <a href="/explore" style="color: #5e4b8b; text-decoration: none; font-weight: bold;">← Back to Timeline</a>
     </div>

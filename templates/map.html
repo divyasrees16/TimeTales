@@ -1,0 +1,139 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2 style="text-align:center; color:#5e4b8b;">Explore Historical Landmarks</h2>
+
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+/>
+<script
+  src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+  defer
+></script>
+
+<div id="map" style="height:400px; max-width:900px; margin: 2rem auto;"></div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    var map = L.map('map').setView([20.5937, 78.9629], 5);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 18,
+        attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+
+    var places = [
+        {
+            lat: 28.6139, lon: 77.2090,
+            name: "Delhi (Red Fort)",
+            fact: "The Red Fort in Delhi is a UNESCO World Heritage site and was the main residence of Mughal emperors."
+        },
+        {
+            lat: 27.1751, lon: 78.0421,
+            name: "Agra (Taj Mahal)",
+            fact: "The Taj Mahal is a white marble mausoleum built by Emperor Shah Jahan in memory of his wife Mumtaz Mahal."
+        },
+        {
+            lat: 26.9124, lon: 75.7873,
+            name: "Jaipur (Amber Fort)",
+            fact: "Amber Fort is known for its artistic Hindu style elements and stunning hilltop views."
+        },
+        {
+            lat: 12.2958, lon: 76.6394,
+            name: "Mysore (Mysore Palace)",
+            fact: "Mysore Palace is a historical palace and a royal residence famous for its grandeur and architecture."
+        },
+        {
+            lat: 15.2993, lon: 74.1240,
+            name: "Goa (Basilica of Bom Jesus)",
+            fact: "This church in Goa houses the mortal remains of St. Francis Xavier and is a UNESCO World Heritage Site."
+        },
+        {
+            lat: 25.4358, lon: 81.8463,
+            name: "Varanasi (Kashi Vishwanath Temple)",
+            fact: "One of the holiest Hindu temples, dedicated to Lord Shiva, located on the banks of the Ganges."
+        },
+        {
+            lat: 23.2599, lon: 77.4126,
+            name: "Sanchi (Sanchi Stupa)",
+            fact: "The Sanchi Stupa is one of the oldest stone structures in India, built by Emperor Ashoka."
+        },
+        {
+            lat: 18.5204, lon: 73.8567,
+            name: "Pune (Shaniwar Wada)",
+            fact: "Shaniwar Wada was the seat of the Peshwas of the Maratha Empire until 1818."
+        },
+        {
+            lat: 22.5726, lon: 88.3639,
+            name: "Kolkata (Victoria Memorial)",
+            fact: "Victoria Memorial is a large marble building dedicated to Queen Victoria, now a museum."
+        },
+        {
+            lat: 11.0168, lon: 76.9558,
+            name: "Coimbatore (Marudamalai Temple)",
+            fact: "An ancient temple dedicated to Lord Murugan located on a hilltop."
+        },
+        {
+            lat: 21.1458, lon: 79.0882,
+            name: "Nagpur (Deekshabhoomi)",
+            fact: "Deekshabhoomi is a sacred monument of Navayana Buddhism where Dr. B.R. Ambedkar converted."
+        },
+        {
+            lat: 30.7333, lon: 76.7794,
+            name: "Chandigarh (Rock Garden)",
+            fact: "A sculpture garden made entirely from industrial & domestic waste, created by Nek Chand."
+        },
+        {
+            lat: 15.8281, lon: 78.0373,
+            name: "Hampi (Virupaksha Temple)",
+            fact: "Virupaksha Temple is an important Hindu temple dedicated to Lord Shiva in the ancient city of Hampi."
+        },
+        {
+            lat: 24.5933, lon: 73.7125,
+            name: "Udaipur (City Palace)",
+            fact: "City Palace is a complex of palaces overlooking Lake Pichola, known for its intricate peacock mosaics."
+        },
+        {
+            lat: 19.3265, lon: 84.7914,
+            name: "Konark (Sun Temple)",
+            fact: "The Sun Temple is famous for its chariot-shaped architecture and detailed stone carvings."
+        }
+    ];
+
+    function buildPopup(place) {
+        var wrapper = document.createElement('div');
+
+        var title = document.createElement('strong');
+        title.textContent = place.name;
+
+        var toggle = document.createElement('a');
+        toggle.href = '#';
+        toggle.textContent = 'Show Facts';
+        toggle.style.cssText = 'display:block; margin-top:0.3rem; color:#5e4b8b; text-decoration:underline; cursor:pointer;';
+
+        var fact = document.createElement('p');
+        fact.textContent = place.fact;
+        fact.style.cssText = 'display:none; margin:0.5rem 0 0; color:#333;';
+
+        toggle.addEventListener('click', function (e) {
+            e.preventDefault();
+            var hidden = fact.style.display === 'none';
+            fact.style.display = hidden ? 'block' : 'none';
+            toggle.textContent = hidden ? 'Hide Facts' : 'Show Facts';
+        });
+
+        wrapper.appendChild(title);
+        wrapper.appendChild(toggle);
+        wrapper.appendChild(fact);
+        return wrapper;
+    }
+
+    places.forEach(function (place) {
+        L.marker([place.lat, place.lon])
+            .addTo(map)
+            .bindPopup(buildPopup(place));
+    });
+});
+</script>
+{% endblock %}
