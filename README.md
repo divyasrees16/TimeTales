@@ -82,11 +82,3 @@ python app.py
 
 Open http://127.0.0.1:5000 in your browser.
 
-## 🧭 Routes
-
-| Route | Description |
-| ----- | ----------- |
-| `/` | Home page: enter an era and pick a language |
-| `/story?era=<name>&language=<lang>` | AI-generated story with Wikipedia summary and image |
-| `/explore` | Visual timeline of historical eras |
-| `/map` | Interactive map of historical landmarks |
